@@ -1,12 +1,14 @@
 import { CommonModule } from '@angular/common';
 import {
   Component,
+  computed,
   DestroyRef,
   effect,
   inject,
   OnInit,
   signal,
 } from '@angular/core';
+import { CameraMonitorService } from '../../core/services/camera-monitor.service';
 
 @Component({
   selector: 'app-camera-monitor',
@@ -17,15 +19,15 @@ import {
 })
 export class CameraMonitorComponent implements OnInit {
   private destroyRef = inject(DestroyRef);
+  private service = inject(CameraMonitorService);
+
+  cameraData = this.service.data;
+  videoUrl = computed(() => this.cameraData()?.videoUrl ?? '');
+  timeline = computed(() => this.cameraData()?.frames ?? []);
+  loading = this.service.loading;
+  error = this.service.error;
 
   currentTime = signal(this.formatTime(new Date()));
-    timeline = signal([
-    { hora: '19:00', frame: 'frame1.png' },
-    { hora: '19:05', frame: 'frame2.png' },
-    { hora: '19:10', frame: 'frame3.png' },
-    { hora: '19:15', frame: 'frame4.png' },
-    { hora: '19:20', frame: 'frame5.png' },
-  ]);
 
   constructor() {
     effect(() => {

@@ -13,7 +13,7 @@
   <div class="relative h-[210px] sm:h-[260px] bg-black">
     <video
       class="w-full h-full object-cover"
-      src="video.mp4"
+      [src]="videoUrl()"
       autoplay
       muted
       loop
@@ -96,7 +96,7 @@
       class="absolute left-[70px] top-0 bottom-0 w-[2px] bg-primary z-0"
     ></div>
     <div class="space-y-6 relative z-10">
-      @for (item of timeline(); track item) {
+      @for (item of timeline(); track item.hora) {
       <div class="flex gap-4 items-start">
         <div
           class="w-12 text-right text-xs pt-2"
