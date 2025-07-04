@@ -1,0 +1,27 @@
+:host {
+  @apply h-screen flex flex-col font-sans text-sm bg-purple-50 text-primary overflow-hidden;
+}
+
+.text-primary {
+  @apply text-[#3C2D72];
+}
+
+.bg-primary {
+  @apply bg-[#5D3B9C];
+}
+
+.border-light {
+  @apply border-[#D4C3ED];
+}
+
+.btn-hover {
+  @apply hover:bg-black/80 transition-colors backdrop-blur-sm touch-manipulation;
+}
+
+.footer-icon {
+  @apply flex flex-col items-center space-y-1 hover:text-[#5D3B9C];
+}
+
+.btn-pill {
+  @apply rounded-full px-3 py-1 font-medium;
+}

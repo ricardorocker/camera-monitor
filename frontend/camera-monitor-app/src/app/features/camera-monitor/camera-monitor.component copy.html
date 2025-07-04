@@ -1,9 +1,9 @@
 <div
-  class="min-h-screen flex flex-col justify-between bg-purple-50 text-primary font-sans text-sm"
+  class="h-screen bg-[#EFE8F6] text-[#3C2D72] flex flex-col font-sans text-sm overflow-hidden"
 >
   <!-- Header -->
   <header
-    class="h-14 flex items-center justify-between px-4 bg-primary text-white"
+    class="h-14 flex items-center justify-between px-4 bg-[#5D3B9C] text-white"
   >
     <span class="text-sm font-medium">{{ currentTime() }}</span>
     <img src="logo.png" alt="Logo" class="h-6 w-auto rounded" />
@@ -22,19 +22,26 @@
       class="absolute bottom-0 left-0 w-full px-3 py-1 bg-black bg-opacity-60 text-white text-[11px] flex items-center justify-between"
     >
       <div class="flex items-center gap-2">
-        <button class="btn-pill bg-white text-primary font-bold text-[11px]">
+        <button
+          class="flex items-center gap-1 bg-white text-[#3C2D72] font-bold rounded-full px-2 py-0.5 text-[11px]"
+        >
           Hoje
         </button>
         <span class="text-red-500">●</span>
         <span>08:32:02</span>
       </div>
       <div class="flex items-center gap-1 text-xs">
+        <!-- Controle de velocidade -->
         <button
-          class="px-2 sm:px-3 py-1 sm:py-2 rounded text-xs sm:text-sm font-medium btn-hover"
+          class="px-2 sm:px-3 py-1 sm:py-2 rounded text-xs sm:text-sm font-medium hover:bg-black/80 transition-colors backdrop-blur-sm touch-manipulation"
         >
-          1x
+          {{ 1 }}x
         </button>
-        <button class="p-1.5 sm:p-2 rounded btn-hover">
+
+        <!-- Botão de tela cheia -->
+        <button
+          class="p-1.5 sm:p-2 rounded hover:bg-black/80 transition-colors backdrop-blur-sm touch-manipulation"
+        >
           <svg
             class="w-4 h-4 sm:w-5 sm:h-5 text-white"
             fill="currentColor"
@@ -51,16 +58,21 @@
 
   <!-- Filtros -->
   <div
-    class="flex items-center justify-between px-4 py-2 bg-white text-xs border-b border-light"
+    class="flex items-center justify-between px-4 py-2 bg-white text-xs border-b border-[#D4C3ED]"
   >
+    <!-- Botões de tempo -->
     <div class="flex gap-2">
-      <button class="btn-pill">24 Horas</button>
-      <button class="btn-pill">1 Hora</button>
-      <button class="btn-pill bg-primary text-white font-bold">
+      <button class="rounded-full px-3 py-1 font-medium">24 Horas</button>
+      <button class="rounded-full px-3 py-1 font-medium">1 Hora</button>
+      <!-- Botão Selecionado -->
+      <button class="rounded-full bg-[#3C2D72] text-white px-3 py-1 font-bold">
         5 Minutos
       </button>
     </div>
-    <div class="flex items-center gap-6 text-primary">
+
+    <!-- Chat e Alerta (estilo Camerite real) -->
+    <div class="flex items-center gap-6 text-[#3C2D72]">
+      <!-- Chat -->
       <button>
         <div class="flex flex-col items-center space-y-0.5">
           <svg
@@ -75,6 +87,8 @@
           <span class="text-xs text-[#D4C3ED]">Chat</span>
         </div>
       </button>
+
+      <!-- Alerta -->
       <button>
         <div class="flex flex-col items-center space-y-0.5">
           <svg
@@ -92,34 +106,59 @@
 
   <!-- Timeline -->
   <div class="relative flex-1 overflow-y-auto px-4 py-3">
+    <!-- Linha vertical contínua -->
     <div
-      class="absolute left-[70px] top-0 bottom-0 w-[2px] bg-primary z-0"
+      class="absolute left-[70px] top-0 bottom-0 w-[2px] bg-[#5D3B9C] z-0"
     ></div>
+
+    <!-- Horários fixos -->
     <div class="space-y-6 relative z-10">
-      @for (item of timeline(); track item) {
+      <!-- Hora atual destacada -->
       <div class="flex gap-4 items-start">
-        <div
-          class="w-12 text-right text-xs pt-2"
-          [ngClass]="
-            item.hora === '19:00' ? 'font-bold text-primary' : 'font-medium'
-          "
-        >
-          {{ item.hora }}
+        <div class="w-12 text-right text-xs font-bold text-[#5D3B9C] pt-2">
+          19:00
         </div>
         <img
-          [src]="item.frame"
+          src="frame1.png"
           class="w-36 h-20 object-cover rounded-md border border-white shadow-md"
         />
       </div>
-      }
+      <div class="flex gap-4 items-start">
+        <div class="w-12 text-right text-xs font-medium pt-2">19:05</div>
+        <img
+          src="frame2.png"
+          class="w-36 h-20 object-cover rounded-md border border-white shadow-md"
+        />
+      </div>
+      <div class="flex gap-4 items-start">
+        <div class="w-12 text-right text-xs font-medium pt-2">19:10</div>
+        <img
+          src="frame3.png"
+          class="w-36 h-20 object-cover rounded-md border border-white shadow-md"
+        />
+      </div>
+      <div class="flex gap-4 items-start">
+        <div class="w-12 text-right text-xs font-medium pt-2">19:15</div>
+        <img
+          src="frame4.png"
+          class="w-36 h-20 object-cover rounded-md border border-white shadow-md"
+        />
+      </div>
+      <div class="flex gap-4 items-start">
+        <div class="w-12 text-right text-xs font-medium pt-2">19:20</div>
+        <img
+          src="frame5.png"
+          class="w-36 h-20 object-cover rounded-md border border-white shadow-md"
+        />
+      </div>
     </div>
   </div>
 
   <!-- Footer -->
   <footer
-    class="bg-white border-t border-light flex justify-around items-center text-xs py-2 text-primary"
+    class="bg-white border-t border-[#D4C3ED] flex justify-around items-center text-xs py-2 text-[#3C2D72]"
   >
-    <button class="footer-icon">
+    <button class="flex flex-col items-center space-y-1 hover:text-[#5D3B9C]">
       <svg
         class="w-5 h-5 sm:w-6 sm:h-6"
         fill="currentColor"
@@ -129,9 +168,9 @@
           d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"
         />
       </svg>
-      <span>Câmeras</span>
+      <span class="text-xs">Câmeras</span>
     </button>
-    <button class="footer-icon">
+    <button class="flex flex-col items-center space-y-1 hover:text-[#5D3B9C]">
       <svg
         class="w-5 h-5 sm:w-6 sm:h-6"
         fill="currentColor"
@@ -141,9 +180,9 @@
           d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"
         />
       </svg>
-      <span>Vídeos</span>
+      <span class="text-xs">Vídeos</span>
     </button>
-    <button class="footer-icon">
+    <button class="flex flex-col items-center space-y-1 hover:text-[#5D3B9C]">
       <svg
         class="w-5 h-5 sm:w-6 sm:h-6"
         fill="currentColor"
@@ -153,9 +192,9 @@
           d="M19 12v7H5v-7H3v7c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zm-6 .67l2.59-2.58L17 11.5l-5 5-5-5 1.41-1.41L11 12.67V3h2z"
         />
       </svg>
-      <span>Salvar</span>
+      <span class="text-xs">Salvar</span>
     </button>
-    <button class="footer-icon">
+    <button class="flex flex-col items-center space-y-1 hover:text-[#5D3B9C]">
       <svg
         class="w-5 h-5 sm:w-6 sm:h-6"
         fill="currentColor"
@@ -166,7 +205,7 @@
           d="M9 2l1.17 1H14l1.17-1h1.66c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H7c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h2z"
         />
       </svg>
-      <span>Captura</span>
+      <span class="text-xs">Captura</span>
     </button>
   </footer>
 </div>
