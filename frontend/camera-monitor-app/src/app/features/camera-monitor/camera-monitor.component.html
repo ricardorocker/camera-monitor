@@ -6,12 +6,14 @@
     class="h-14 flex items-center justify-between px-4 bg-primary text-white"
   >
     <span class="text-sm font-medium">{{ currentTime() }}</span>
+    <span class="text-xs text-[#D4C3ED]">Ricardo S. Rocker</span>
     <img src="logo.png" alt="Logo" class="h-6 w-auto rounded" />
   </header>
 
   <!-- Vídeo -->
   <div class="relative h-[210px] sm:h-[260px] bg-black">
     <video
+      #videoPlayer
       class="w-full h-full object-cover"
       [src]="videoUrl()"
       autoplay
@@ -34,7 +36,10 @@
         >
           1x
         </button>
-        <button class="p-1.5 sm:p-2 rounded btn-hover">
+        <button
+          class="p-1.5 sm:p-2 rounded btn-hover"
+          (click)="entrarEmTelaCheia()"
+        >
           <svg
             class="w-4 h-4 sm:w-5 sm:h-5 text-white"
             fill="currentColor"
@@ -75,7 +80,7 @@
           <span class="text-xs text-[#D4C3ED]">Chat</span>
         </div>
       </button>
-      <button>
+      <button (click)="acionarAlerta()">
         <div class="flex flex-col items-center space-y-0.5">
           <svg
             class="w-5 h-5 text-[#D4C3ED]"
@@ -155,7 +160,7 @@
       </svg>
       <span>Salvar</span>
     </button>
-    <button class="footer-icon">
+    <button class="footer-icon" (click)="capturarFrame()">
       <svg
         class="w-5 h-5 sm:w-6 sm:h-6"
         fill="currentColor"
@@ -169,4 +174,31 @@
       <span>Captura</span>
     </button>
   </footer>
+</div>
+
+<!-- Modal de alerta -->
+<div
+  *ngIf="alertaAtivo()"
+  class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50"
+>
+  <div class="bg-white rounded-xl p-6 text-center max-w-xs shadow-xl">
+    <p class="text-lg font-bold text-primary">
+      Acionar autoridades em {{ countdown() }}s
+    </p>
+    <p class="text-sm mt-2 text-gray-600">Toque em cancelar se for engano.</p>
+    <button
+      class="mt-4 px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700"
+      (click)="cancelarAlerta()"
+    >
+      Cancelar
+    </button>
+  </div>
+</div>
+
+<!-- Alert -->
+<div
+  *ngIf="acionamentoFinalizado()"
+  class="fixed top-4 left-1/2 transform -translate-x-1/2 bg-red-600 text-white px-4 py-2 rounded-xl shadow-lg z-50 animate-bounce"
+>
+  🚨 Autoridades acionadas!
 </div>
